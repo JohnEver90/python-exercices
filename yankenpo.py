@@ -20,7 +20,7 @@ def run():
     intentos = confirm()
 
     #Mensaje de confirmación
-    print(f"\nUsted jugará {intentos} veces ¡Buena suerte!")
+    print(f"Usted jugará {intentos} veces ¡Buena suerte!\n")
 
     
     #Contadores score
@@ -34,15 +34,15 @@ def run():
         def valueuser():
             while True:
                 try:                
-                    useroption = int(input("Eliga su opción: Opción 1 para elegir Piedra.\n Opción 2 para elegir Papel.\n Opción 3 para elegir tijera.\n Opción 0 para terminar de jugar y salir.\n Eliga: "))
+                    useroption = int(input("Eliga su opción: \n Opción 1 para elegir 'Piedra'.\n Opción 2 para elegir 'Papel'.\n Opción 3 para elegir 'Tijera'.\n Opción 0 para terminar de jugar y salir.\n Eliga su opción: "))
                     if 0<= useroption <=3:
                         return useroption
                     else:
-                        print("Por favor eliga una de las opciones dadas. 1,2 ó 3")
+                        print("\nPor favor eliga una de las opciones dadas. 1,2 ó 3")
                     #Finalizando el programa
                     
                 except ValueError:
-                        print("Por favor ingrese un valor numérico válido, 1,2 ó 3")
+                        print("\nPor favor ingrese un valor numérico válido, 1,2 ó 3")
 
         #Guardo el valor q retorna la opción del usuario
         userchoice = valueuser()
@@ -57,57 +57,66 @@ def run():
 
         #Finalizando el programa
         if userchoice == 0:
-            print("Usted decidió dejar de jugar. Gracias por participar.")
+            print("\nUsted decidió dejar de jugar. Gracias por participar.")
             break
 
     #Lógica de juego
         #Casos donde el usuario gana
         if userchoice == 1 and cpuchoice == 3:
-            print("Usted eligió piedra y la CPU eligió tijera.")
-            print("Usted ganó, piedra le gana a tijera.")
+            print("\nUsted eligió piedra y la CPU eligió tijera.")
+            print("Usted ganó, piedra le gana a tijera.\n")
             score_user +=1
         elif userchoice == 2 and cpuchoice == 1:
-            print("Usted eligió papel y la CPU eligió piedra.")
-            print("Usted ganó, papel le gana a piedra.")
+            print("\nUsted eligió papel y la CPU eligió piedra.")
+            print("Usted ganó, papel le gana a piedra.\n")
             score_user +=1
         elif userchoice == 3 and cpuchoice == 2:
-            print("Usted eligió tijera y la CPU eligió papel.")
-            print("Usted ganó, tijera le gana a papel.")
+            print("\nUsted eligió tijera y la CPU eligió papel.")
+            print("Usted ganó, tijera le gana a papel.\n")
             score_user +=1
         #Casos donde el usuario pierde
         elif userchoice == 1 and cpuchoice == 2:
-            print("Usted eligió piedra y la CPU eligió papel.")
-            print("Usted perdió, papel le gana a piedra.")
+            print("\nUsted eligió piedra y la CPU eligió papel.")
+            print("Usted perdió, papel le gana a piedra.\n")
             score_cpu +=1
         elif userchoice == 2 and cpuchoice == 3:
-            print("Usted eligió papel y la CPU eligió tijera.")
-            print("Usted perdió, tijera le gana a papel.")
+            print("\nUsted eligió papel y la CPU eligió tijera.")
+            print("Usted perdió, tijera le gana a papel.\n")
             score_cpu +=1
         elif userchoice == 3 and cpuchoice == 1:
-            print("Usted eligió tijera y la CPU eligió piedra.")
-            print("Usted perdió, piedra le gana a tijera.")
+            print("\nUsted eligió tijera y la CPU eligió piedra.")
+            print("Usted perdió, piedra le gana a tijera.\n")
             score_cpu +=1
         #Casos donde se empata
         elif userchoice == 1 and cpuchoice ==1:
-            print("Ambos jugadores eligieron piedra, ha sido un empate.")
+            print("\nAmbos jugadores eligieron piedra, ha sido un empate.\n")
             draw +=1
         elif userchoice == 2 and cpuchoice ==2:
-            print("Ambos jugadores eligieron papel, ha sido un empate.")
+            print("\nAmbos jugadores eligieron papel, ha sido un empate.\n")
             draw +=1
         elif userchoice == 3 and cpuchoice ==3:
-            print("Ambos jugadores eligieron tijera, ha sido un empate.")
+            print("\nAmbos jugadores eligieron tijera, ha sido un empate.\n")
             draw +=1
 
-    print(score_user)
-    print(score_cpu)
-    print(draw)
+    #Mostrando los resultados
+    print(f"\nUsted ha ganado : {score_user} veces")
+    print(f"La CPU ha ganado : {score_cpu} veces")
+    print(f"Usted y la CPU han empatado un total de: {draw} veces")
 
-            
-        
-        
+    #Evaluando quién ganó 
+    def count_general():
+        if score_user > score_cpu:
+            mensaje = "\nUsted ha ganado en el conteo general ¡Felicidades!"
+        elif score_cpu > score_user:
+            mensaje = "\nUsted ha perdido en el conteo general ¡Suerte para la próxima vez!"
+        else:
+            mensaje = "\nUsted y la CPU empataron en el conteo general. ¡Buen intento!"
+        return mensaje
+    #Guardando resultado final
+    score_general = count_general()
 
-
+    #Mostrando el resultado final
+    print(score_general)
     
-
 if __name__ == "__main__":
     run ()
